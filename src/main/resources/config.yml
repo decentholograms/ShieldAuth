@@ -1,0 +1,269 @@
+database:
+  type: "sqlite"
+  host: "localhost"
+  port: 3306
+  database: "shieldauth"
+  username: "root"
+  password: ""
+  pool-size: 10
+
+update-checker:
+  enabled: true
+  github-url: "https://github.com/decentholograms/ShieldAuth"
+  github-api-url: "https://api.github.com/repos/decentholograms/ShieldAuth/releases/latest"
+
+aliases:
+  register:
+    - "reg"
+    - "r"
+    - "signup"
+    - "crear"
+    - "registrar"
+  login:
+    - "l"
+    - "log"
+    - "signin"
+    - "entrar"
+    - "iniciar"
+  changepassword:
+    - "changepass"
+    - "cp"
+    - "cambiarpass"
+    - "newpass"
+    - "chpass"
+  unregister:
+    - "unreg"
+    - "deleteaccount"
+    - "borrar"
+  setpin:
+    - "pin"
+    - "addpin"
+    - "createpin"
+  removepin:
+    - "delpin"
+    - "deletepin"
+    - "rmpin"
+  unsetpin:
+    - "nopin"
+    - "clearpin"
+  setemail:
+    - "email"
+    - "mail"
+    - "addemail"
+  verifyemail:
+    - "verify"
+    - "confirmemail"
+    - "vmail"
+  shieldauth:
+    - "sa"
+    - "sh"
+    - "auth"
+    - "shield"
+  
+security:
+  encryption: "ARGON2"
+  password-min-length: 6
+  password-max-length: 32
+  pin-length: 4
+  max-login-attempts: 5
+  lock-duration: 300
+  max-pin-attempts: 3
+  pin-lock-duration: 300
+  max-ip-login-attempts: 10
+  ip-lock-duration: 600
+  max-ip-pin-attempts: 6
+  ip-pin-lock-duration: 600
+  ip-block-kick-enabled: true
+  session-timeout: 1800
+  session-enabled: false
+  auth-timeout-enabled: true
+  register-timeout: 60
+  login-timeout: 60
+  pin-timeout: 30
+  
+  # Commands allowed before authentication
+  allowed-commands:
+    - "/login"
+    - "/register"
+    - "/l"
+    - "/reg"
+  
+discord:
+  enabled: false
+  webhook-url: ""
+  embed-color-red: 255
+  embed-color-green: 0
+  embed-color-blue: 0
+  
+email:
+  enabled: false
+  smtp-host: "smtp.gmail.com"
+  smtp-port: 587
+  smtp-username: ""
+  smtp-password: ""
+  smtp-ssl: true
+  from-address: "noreply@shieldauth.com"
+  
+titles:
+  register:
+    title: "&c&lShieldAuth"
+    subtitle: "&7Please register using &e/register <password> <password>"
+    fade-in: 10
+    stay: 70
+    fade-out: 20
+  login:
+    title: "&c&lShieldAuth"
+    subtitle: "&7Please login using &e/login <password>"
+    fade-in: 10
+    stay: 70
+    fade-out: 20
+  pin:
+    title: "&6&lPIN Required"
+    subtitle: "&7Enter your PIN to continue"
+    fade-in: 10
+    stay: 70
+    fade-out: 20
+  success:
+    title: "&a&lAuthenticated"
+    subtitle: "&7Welcome back!"
+    fade-in: 10
+    stay: 40
+    fade-out: 20
+    
+messages:
+  plugin-enabled: "&8[&c&lShieldAuth&8] &aPlugin enabled successfully!"
+  plugin-disabled: "&8[&c&lShieldAuth&8] &cPlugin disabled!"
+  prefix: "&8[&c&lShieldAuth&8] "
+  
+  update-available: "&8[&c&lShieldAuth&8] &eNew version available! &7Current: &c{current} &7Latest: &a{latest}\\n&8[&c&lShieldAuth&8] &7Download: &b{url}"
+  session-restored: "&aSession restored! Welcome back."
+  
+  register-success: "&aYou have been registered successfully!"
+  register-already: "&cYou are already registered!"
+  register-password-mismatch: "&cPasswords do not match!"
+  register-usage: "&cUsage: /register <password> <confirm password>"
+  register-password-too-short: "&cPassword must be at least {min} characters!"
+  register-password-too-long: "&cPassword cannot exceed {max} characters!"
+  
+  login-success: "&aYou have logged in successfully!"
+  login-success-pin-required: "&aPassword correct! Now enter your PIN."
+  login-already: "&cYou are already logged in!"
+  login-not-registered: "&cYou are not registered! Use /register"
+  login-wrong-password: "&cIncorrect password! Attempts remaining: {attempts}"
+  login-usage: "&cUsage: /login <password>"
+  login-locked: "&cToo many failed attempts! Account locked for {time} seconds."
+  
+  ip-locked: "&cYour IP has been temporarily blocked for {time} seconds due to too many failed attempts."
+  ip-locked-join: "&c&lWarning: &cYour IP is currently blocked for {time} more seconds due to suspicious activity."
+  ip-pin-locked: "&cYour IP has been blocked from PIN attempts for {time} seconds."
+  ip-pin-locked-join: "&c&lWarning: &cYour IP is blocked from PIN attempts for {time} more seconds."
+  account-locked-join: "&c&lWarning: &cYour account login is locked for {time} more seconds."
+  pin-locked-join: "&c&lWarning: &cYour PIN access is locked for {time} more seconds."
+  
+  block-ip-locked: "&c&lTemporarily Blocked\n\n&7Your IP has been blocked for &c{time}&7.\n&7Reason: &cToo many failed login attempts.\n\n&7Please wait and try again later."
+  block-ip-pin-locked: "&c&lTemporarily Blocked\n\n&7Your IP has been blocked for &c{time}&7.\n&7Reason: &cToo many failed PIN attempts.\n\n&7Please wait and try again later."
+  block-ip-login-denied: "&c&lTemporarily Blocked\n\n&7Your IP is temporarily blocked for &c{time}&7.\n&7Reason: &cToo many failed login attempts.\n\n&7Please wait before trying again."
+  block-ip-pin-denied: "&c&lTemporarily Blocked\n\n&7Your IP is temporarily blocked for &c{time}&7.\n&7Reason: &cToo many failed PIN attempts.\n\n&7Please wait before trying again."
+  
+  kick-register-timeout: "&c&lConnection Timeout\n\n&7You took too long to register.\n&7Time limit: &c{time}&7.\n\n&7Please reconnect and register faster."
+  kick-login-timeout: "&c&lConnection Timeout\n\n&7You took too long to login.\n&7Time limit: &c{time}&7.\n\n&7Please reconnect and login faster."
+  kick-pin-timeout: "&c&lConnection Timeout\n\n&7You took too long to enter your PIN.\n&7Time limit: &c{time}&7.\n\n&7Please reconnect and enter your PIN faster."
+  
+  unregister-success: "&aYou have been unregistered successfully!"
+  unregister-wrong-password: "&cIncorrect password!"
+  unregister-usage: "&cUsage: /unregister <password>"
+  unregister-not-registered: "&cYou are not registered!"
+  unregister-no-permission: "&cYou don't have permission to unregister!"
+  
+  changepassword-success: "&aPassword changed successfully!"
+  changepassword-wrong-password: "&cCurrent password is incorrect!"
+  changepassword-usage: "&cUsage: /changepassword <current> <new>"
+  changepassword-no-permission: "&cYou don't have permission to change password!"
+  changepassword-same-password: "&cNew password cannot be the same as current!"
+  
+  pin-set-success: "&aPIN has been set successfully!"
+  pin-set-usage: "&cUsage: /setpin <pin>"
+  pin-invalid-length: "&cPIN must be exactly {length} digits!"
+  pin-invalid-format: "&cPIN must contain only numbers!"
+  pin-removed-success: "&aPIN has been removed successfully!"
+  pin-remove-usage: "&cUsage: /removepin <pin>"
+  pin-wrong: "&cIncorrect PIN!"
+  pin-wrong-attempts: "&cIncorrect PIN! {attempts} attempts remaining."
+  pin-locked: "&cToo many failed PIN attempts! Wait {time} seconds."
+  pin-no-permission: "&cYou don't have permission to set a PIN!"
+  pin-verified: "&aPIN verified successfully!"
+  pin-not-set: "&cYou don't have a PIN set!"
+  
+  email-set-success: "&aEmail has been set! Check your inbox for verification code."
+  email-set-usage: "&cUsage: /setemail <email>"
+  email-invalid-format: "&cInvalid email format!"
+  email-verify-success: "&aEmail verified successfully!"
+  email-verify-usage: "&cUsage: /verifyemail <code>"
+  email-verify-wrong-code: "&cIncorrect verification code!"
+  email-no-permission: "&cYou don't have permission to set an email!"
+  email-already-verified: "&cYour email is already verified!"
+  
+  admin-reload-success: "&aConfiguration reloaded successfully!"
+  admin-no-permission: "&cYou don't have permission to do this!"
+  admin-addadmin-success: "&a{player} has been added as admin!"
+  admin-addadmin-already: "&c{player} is already an admin!"
+  admin-addadmin-usage: "&cUsage: /shieldauth addadmin <player>"
+  admin-removeadmin-success: "&a{player} has been removed from admins!"
+  admin-removeadmin-not-found: "&c{player} is not an admin!"
+  admin-removeadmin-usage: "&cUsage: /shieldauth removeadmin <player>"
+  admin-list-header: "&6Admin List:"
+  admin-list-entry: "&7- &e{player}"
+  admin-list-empty: "&7No admins found."
+  admin-help-header: "&6&lShieldAuth Admin Commands:"
+  admin-help-reload: "&e/shieldauth reload &7- Reload configuration"
+  admin-help-addadmin: "&e/shieldauth addadmin <player> &7- Add an admin"
+  admin-help-removeadmin: "&e/shieldauth removeadmin <player> &7- Remove an admin"
+  admin-help-list: "&e/shieldauth list &7- List all admins"
+  admin-help-info: "&e/shieldauth info <player> &7- View player info"
+  admin-help-forcelogin: "&e/shieldauth forcelogin <player> &7- Force login a player"
+  admin-help-forceunregister: "&e/shieldauth forceunregister <player> &7- Force unregister"
+  admin-help-forcesetpin: "&e/shieldauth forcesetpin <player> <pin> &7- Force set PIN"
+  admin-help-forceremovepin: "&e/shieldauth forceremovepin <player> &7- Force remove PIN"
+  admin-forcelogin-success: "&a{player} has been force logged in!"
+  admin-forcelogin-not-online: "&c{player} is not online!"
+  admin-forceunregister-success: "&a{player} has been unregistered!"
+  admin-forceunregister-not-found: "&c{player} is not registered!"
+  admin-forcesetpin-success: "&aPIN has been set for {player}!"
+  admin-forcesetpin-usage: "&cUsage: /shieldauth forcesetpin <player> <pin>"
+  admin-forceremovepin-success: "&aPIN has been removed from {player}!"
+  admin-forceremovepin-no-pin: "&c{player} does not have a PIN set!"
+  admin-info-header: "&6Player Info: &e{player}"
+  admin-info-registered: "&7Registered: &e{status}"
+  admin-info-has-pin: "&7Has PIN: &e{status}"
+  admin-info-has-email: "&7Has Email: &e{status}"
+  admin-info-last-login: "&7Last Login: &e{date}"
+  admin-info-last-ip: "&7Last IP: &e{ip}"
+  
+  not-authenticated: "&cYou must login first!"
+  already-authenticated: "&cYou are already authenticated!"
+  must-register: "&cYou must register first! Use /register <password> <password>"
+  must-login: "&cYou must login first! Use /login <password>"
+  must-verify-pin: "&cYou must verify your PIN first!"
+  command-blocked: "&cYou cannot use commands until you are authenticated!"
+  action-blocked: "&cYou cannot do this until you are authenticated!"
+  
+gui:
+  pin-title: "&8&lEnter Your PIN"
+  pin-number-name: "&e&l{number}"
+  pin-confirm-name: "&a&lConfirm"
+  pin-clear-name: "&c&lClear"
+  pin-back-name: "&7&lBack"
+  pin-current: "&7Current: &e{pin}"
+  
+admin-list: []
+
+permissions:
+  admin: "shieldauth.admin"
+  forcesetpin: "shieldauth.forcesetpin"
+  forceremovepin: "shieldauth.forceremovepin"
+  forcelogin: "shieldauth.forcelogin"
+  forceunregister: "shieldauth.forceunregister"
+  user-changepassword: "shieldauth.changepassword"
+  user-unregister: "shieldauth.unregister"
+  user-pin: "shieldauth.pin"
+  user-email: "shieldauth.email"

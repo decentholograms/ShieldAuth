@@ -1,0 +1,86 @@
+name: ShieldAuth
+version: 1.0.0
+main: com.shieldauth.ShieldAuth
+api-version: 1.16
+author: ShieldAuth
+description: Advanced authentication plugin with PIN, email verification and Discord integration
+softdepend:
+  - LuckPerms
+
+commands:
+  register:
+    description: Register a new account
+    usage: /register <password> <confirm password>
+    aliases: [reg, r, signup, crear, registrar]
+  login:
+    description: Login to your account
+    usage: /login <password>
+    aliases: [l, log, signin, entrar, iniciar]
+  unregister:
+    description: Unregister your account
+    usage: /unregister <password>
+    permission: shieldauth.unregister
+    aliases: [unreg, deleteaccount, borrar]
+  changepassword:
+    description: Change your password
+    usage: /changepassword <current> <new>
+    permission: shieldauth.changepassword
+    aliases: [changepass, cp, cambiarpass, newpass, chpass]
+  setpin:
+    description: Set a PIN for extra security
+    usage: /setpin <pin>
+    permission: shieldauth.pin
+    aliases: [pin, addpin, createpin]
+  removepin:
+    description: Remove your PIN
+    usage: /removepin <pin>
+    permission: shieldauth.pin
+    aliases: [delpin, deletepin, rmpin]
+  unsetpin:
+    description: Remove your PIN
+    usage: /unsetpin <pin>
+    permission: shieldauth.pin
+    aliases: [nopin, clearpin]
+  setemail:
+    description: Set your email for recovery
+    usage: /setemail <email>
+    permission: shieldauth.email
+    aliases: [email, mail, addemail]
+  verifyemail:
+    description: Verify your email
+    usage: /verifyemail <code>
+    aliases: [verify, confirmemail, vmail]
+  shieldauth:
+    description: ShieldAuth admin commands
+    usage: /shieldauth <subcommand>
+    permission: shieldauth.admin
+    aliases: [sa, sh, auth, shield]
+
+permissions:
+  shieldauth.admin:
+    description: Access to all admin commands
+    default: op
+  shieldauth.forcesetpin:
+    description: Allows force setting PIN on players
+    default: op
+  shieldauth.forceremovepin:
+    description: Allows force removing PIN from players
+    default: op
+  shieldauth.forcelogin:
+    description: Allows force login players
+    default: op
+  shieldauth.forceunregister:
+    description: Allows force unregister players
+    default: op
+  shieldauth.unregister:
+    description: Allows user to unregister
+    default: true
+  shieldauth.changepassword:
+    description: Allows user to change password
+    default: true
+  shieldauth.pin:
+    description: Allows user to set/remove PIN
+    default: true
+  shieldauth.email:
+    description: Allows user to set email
+    default: true
